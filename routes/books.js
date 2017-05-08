@@ -20,4 +20,17 @@ router.get('/new', (req, res, next) => {
   res.render('books/new', { title: 'Galvanize Reads', subTitle: 'Add a new book'});
 })
 
+router.put('/:index', (req, res, next) => {
+  let id = req.params.index;
+  let book = {
+    genre: req.body.genre,
+    description: req.body.description,
+    portait_URL: req.body.portait_URL
+  }
+  db('books').update(book, '*').where({id})
+  .then(updatedBook => {
+    res.redirect('/books')
+  })
+})
+
 module.exports = router;
