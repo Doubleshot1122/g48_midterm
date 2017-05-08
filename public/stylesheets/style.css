@@ -30,3 +30,7 @@ a {
   line-height: 1.3333333;
   border-radius: 6px;
 }
+
+#editBtn {
+  width:400px
+}

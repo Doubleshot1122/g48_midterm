@@ -1,0 +1,36 @@
+<% layout('../index') -%>
+<a href="/books"><img class="img-responsive" src="http://placehold.it/700x100/5bc0de/000000?text=Books" alt=""></a>
+<br>
+<a href="/authors"><img class=img-responsive src="http://placehold.it/700x100/5cb85c/000000?text=Authors" alt=""></a>
+
+<br>
+<h2><%= subTitle %></h2>
+<br>
+<h3><%= result.title %></h3>
+<br>
+<form action="/books/<%= result.id %>" method="post">
+  <label for="genre">Genre</label>
+  <input id="genre" type="text" name="genre" value="<%= result.genre %>">
+  <br>
+  <br>
+  <label for="portait_URL">Book  Cover URL</label>
+  <input id="portait_URL" type="text" name="portait_URL" value="<%= result.portait_URL %>">
+  <br>
+  <br>
+  <label for="description">Description</label>
+  <br>
+  <textarea id="description" name="name" rows="8" cols="80"><%= result.description%></textarea>
+  <br>
+  <br>
+  <button id="editBtn" class="btn btn-lg btn-primary btn-block" type="submit" >Update Book</button>
+</form>
+
+
+
+
+
+
+
+
+
+<%= JSON.stringify(result) %>
