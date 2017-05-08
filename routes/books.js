@@ -33,4 +33,12 @@ router.put('/:index', (req, res, next) => {
   })
 })
 
+router.delete('/:index', (req, res, next)=> {
+  let id = req.params.index;
+  db('books').del().where({id})
+  .then(() => {
+    res.redirect('/books')
+  })
+})
+
 module.exports = router;
