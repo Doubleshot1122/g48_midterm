@@ -1,0 +1,41 @@
+<% layout('../index') -%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <h2>Total Books:
+      <span><em><%=results.length%></em></span></h2>
+    </div>
+    <div class="col-md-10">
+
+      <% results.forEach(el => { %>
+      <div class="book" data-book-genre='python'>
+        <div class="row">
+          <div class="col-md-4">
+            <img class="img-responsive book-img" alt="" src="<%= el.portait_URL%>">
+          </div>
+          <div class="col-md-6 col-md-offset-1">
+            <h3><a href="/books/<%=results[0].id%>"></a></h3>
+            <h4><%=el.genre%></h4>
+            <p><%=el.description%></p>
+            <p><strong>Authors:</strong></p>
+            <ol>
+              <li><a href="/authors/1">Author Name</a></li>
+            </ol>
+            <div class="btn-group-lg" role="group">
+              <a class= "btn btn-success" role="button" href="/books/<%=el.id%>/edit">Edit</a>
+              <form action="/books/<%= el.id%>?_method=DELETE" method="POST">
+                <button
+                  data-book-id="<%=el.id%>/"
+                  class="btn btn-danger remove-book"
+                  type="submit"
+                  name="delete">Remove</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div><!-- book end -->
+    <% }) %>
+    </div>
+  </div>
+</div>
