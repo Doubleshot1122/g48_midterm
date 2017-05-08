@@ -2,7 +2,8 @@
 <a href="/books"><img class="img-responsive" src="http://placehold.it/700x100/5bc0de/000000?text=Books" alt=""></a>
 <br>
 <a href="/authors"><img class=img-responsive src="http://placehold.it/700x100/5cb85c/000000?text=Authors" alt=""></a>
-
+<br>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-md-2">
@@ -18,7 +19,7 @@
             <img class="img-responsive book-img" alt="" src="<%= el.portait_URL%>">
           </div>
           <div class="col-md-6 col-md-offset-1">
-            <h3><a href="/books/<%=results[0].id%>"></a></h3>
+            <h3><a href="/books/<%=el.id%>"><%= el.title%></a></h3>
             <h4><%=el.genre%></h4>
             <p><%=el.description%></p>
             <p><strong>Authors:</strong></p>

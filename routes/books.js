@@ -33,6 +33,13 @@ router.put('/:index', (req, res, next) => {
   })
 })
 
+router.get('/:index', (req, res, next) => {
+  db('books').where('id', req.params.index).first()
+  .then(result => {
+      res.render('books/show', { title: 'Galvanize Reads', result});
+  })
+});
+
 router.delete('/:index', (req, res, next)=> {
   let id = req.params.index;
   db('books').del().where({id})
