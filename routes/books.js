@@ -40,6 +40,19 @@ router.get('/:index', (req, res, next) => {
   })
 });
 
+router.post('/books', (req, res, next) => {
+  let book = {
+    title: req.body.title,
+    genre: req.body.genre,
+    description: req.body.description,
+    portait_URL: req.body.portait_URL
+  }
+
+  console.log(book)
+  res.redirect('/books/1')
+
+})
+
 router.delete('/:index', (req, res, next)=> {
   let id = req.params.index;
   db('books').del().where({id})

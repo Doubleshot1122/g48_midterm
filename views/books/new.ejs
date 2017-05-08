@@ -4,3 +4,33 @@
 <a href="/authors"><img class=img-responsive src="http://placehold.it/700x100/5cb85c/000000?text=Authors" alt=""></a>
 
 <h3><%= subTitle%></h3>
+<br>
+<br>
+<div class="container">
+  <form action="/books" method="POST">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" >
+    <br>
+    <br>
+    <label for="genre">Genre</label>
+    <input id="genre" type="text" name="genre" >
+    <br>
+    <br>
+    <label for="portait_URL">Book URL</label>
+    <input id="portait_URL" type="text" name="portait_URL" >
+    <br>
+    <br>
+    <label for="description">Description</label>
+    <br>
+    <textarea id= "description" name="description" rows="8" cols="80"></textarea>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-default">Submit</button>
+
+
+
+
+  </form>
+
+
+</div>
