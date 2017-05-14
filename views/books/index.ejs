@@ -24,7 +24,9 @@
             <p><%=el.description%></p>
             <p><strong>Authors:</strong></p>
             <ol>
-              <li><a href="/authors/1">Author Name</a></li>
+              <% el['authors'].forEach(author => { %>
+                <li><a href="/authors/<%= author.aid%>"><%= author.name%></a></li>
+              <% }) %>
             </ol>
             <div class="btn-group-lg" role="group">
               <a class= "btn btn-success" role="button" href="/books/<%=el.id%>/edit">Edit</a>

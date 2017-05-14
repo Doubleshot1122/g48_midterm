@@ -3,7 +3,35 @@ var router = express.Router();
 var db = require('../db/connections.js');
 
 router.get('/', (req, res, next) => {
-  db('books')
+  let books = db('books')
+  let authors = db('books').select('books.id', 'authors.id as aid',  'authors.first_name', 'authors.last_name')
+  .innerJoin('book_author', 'book_author.book_id', 'books.id')
+  .innerJoin('authors', 'book_author.author_id', 'authors.id')
+  Promise.all([books, authors])
+  .then(results => {
+    let books = results[0];
+    let authors = results[1].map(el => {
+      let results = {}
+      results.id = el.id;
+      results.aid = el.aid;
+      results.name = `${el.first_name} ${el.last_name}`;
+      return results
+      }
+    )
+
+    books.forEach(el => {el.authors = []});
+
+    books.forEach(book => {
+      authors.forEach(auth => {
+        if(book.id === auth.id){
+          // console.log(auth)
+          book.authors.push(auth)
+        }
+      })
+    });
+    
+    return books;
+  })
   .then(results => {
     res.render('books/index', { title: 'Galvanize Reads', results});
   })
@@ -48,7 +76,6 @@ router.post('/books', (req, res, next) => {
     portait_URL: req.body.portait_URL
   }
 
-  console.log(book)
   res.redirect('/books/1')
 
 })
