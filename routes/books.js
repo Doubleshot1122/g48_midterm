@@ -24,12 +24,11 @@ router.get('/', (req, res, next) => {
     books.forEach(book => {
       authors.forEach(auth => {
         if(book.id === auth.id){
-          // console.log(auth)
           book.authors.push(auth)
         }
       })
     });
-    
+
     return books;
   })
   .then(results => {
@@ -68,7 +67,7 @@ router.get('/:index', (req, res, next) => {
   })
 });
 
-router.post('/books', (req, res, next) => {
+router.post('/', (req, res, next) => {
   let book = {
     title: req.body.title,
     genre: req.body.genre,
@@ -76,7 +75,15 @@ router.post('/books', (req, res, next) => {
     portait_URL: req.body.portait_URL
   }
 
-  res.redirect('/books/1')
+  if(!book.title || !book.genre || !book.description || !book.portait_URL){
+    res.render('books/new', {error: 'all fields are required', title: 'Galvanize Reads', subTitle: 'Add a new book'})
+  }
+
+  db('books').insert(book, '*')
+  .then(results => {
+    var id = results[0].id;
+    res.redirect(`books/${id}`)
+  })
 
 })
 
